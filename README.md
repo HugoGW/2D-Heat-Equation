@@ -7,7 +7,7 @@ $\textbf{Solving the 1D heat equation}$
 
 We have a 1D rod of length $L$, and we want to know the evolution of temperature $T$ as a function of time $t>0$ and position $x \in [0,L]$. The evolution of temperature with respect to position and time follows the 1D Fourier heat equation, which is given by:
 
-$\displaystyle (E) : ~~~~ \frac{\partial T}{\partial t} - D \frac{\partial^2 T}{\partial x^2} = 0$
+$$\displaystyle (E) : ~~~~ \frac{\partial T}{\partial t} - D \frac{\partial^2 T}{\partial x^2} = 0$$
 
 We make the assumption regarding the boundary conditions: $T(0,t) = T(L,t) = 0$, as well as regarding the initial condition : $T(x,0) = f(x) \forall x \in [0,L]$.
 
