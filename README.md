@@ -12,5 +12,5 @@ On fait la suppostion quant aux conditions aux bords : $T (0,t) = T (L,t) = 0$ e
 
 Fourier a émis l'hypothèse que la chaleur pouvait s'intepréter comme des petites ondes de chaleurs. Partant de cela, on va supposer que la température $T$ peut s'interpréter comme une série de Fourier (pour simplifier le tout, on peut supposer que $T(x,t)$ est une fonction $C^{\infty}$) :
 
-$\displaystyle T(x,t) = a_0 + \sum_{n=0}^{\infty} a_n(t) \cos \bigg( \frac{\pi n}{L} x \bigg) + b_n(t) \sin\big( \frac{\pi n}{L} x \big)$
+$\displaystyle T(x,t) = a_0 + \sum_{n=0}^{\infty} a_n(t) \cos \bigg( \frac{\pi n}{L} x \bigg) + b_n(t) \sin \Big( \frac{\pi n}{L} x \Big)$
 
