@@ -13,11 +13,11 @@ We make the assumption regarding the boundary conditions: $T(0,t) = T(L,t) = 0$,
 
 Fourier hypothesized that heat could be interpreted as small waves of heat. Building on this, we assume that the temperature $T$ can be interpreted as a Fourier series (to simplify matters, we can assume that $T(x,t)$ is a function $C^{\infty}$) :
 
-$\displaystyle T(x,t) = a_0 + \sum_{n=0}^{\infty} a_n(t) \cos \Big( \frac{\pi n}{L} x \Big) + b_n(t) \sin \Big( \frac{\pi n}{L} x \Big)$
+$$\displaystyle T(x,t) = a_0 + \sum_{n=0}^{\infty} a_n(t) \cos \Big( \frac{\pi n}{L} x \Big) + b_n(t) \sin \Big( \frac{\pi n}{L} x \Big)$$
 
 But we recall that $T(0,t) = T(L,t) = 0$, and only the odd part of the series satisfies this condition because $\displaystyle \sin \Big( \frac{\pi n}{L} 0 \Big) = \sin \Big( \frac{\pi n}{L} L \Big) = 0$ so we have :
 
-$\displaystyle T(x,t) =  \sum_{n=0}^{\infty} b_n(t) \sin \Big( \frac{\pi n}{L} x \Big)$
+$$\displaystyle T(x,t) =  \sum_{n=0}^{\infty} b_n(t) \sin \Big( \frac{\pi n}{L} x \Big)$$
 
 that we will inject into the equation $(E)$ :
 
@@ -33,13 +33,13 @@ For a fixed $n$, we have the differential equation $\displaystyle b_n'(t) + D\fr
 
 So, we have as a solution :
 
-$\displaystyle T(x,t) = \sum_{n=0}^{\infty} b_n(0) e^{-\frac{D \pi^2 n^2}{L^2} t} \sin \Big( \frac{\pi n}{L} x \Big)$
+$$\displaystyle T(x,t) = \sum_{n=0}^{\infty} b_n(0) e^{-\frac{D \pi^2 n^2}{L^2} t} \sin \Big( \frac{\pi n}{L} x \Big)$$
 
 We can then determine $b_n(0)$ using the initial condition : $\displaystyle T(x,0) = f(x) = \sum_{n=0}^{\infty} b_n(0) \sin \Big( \frac{\pi n}{L} x \Big)$
 
 Since we are dealing with a Fourier series, we can calculate the coefficients $b_n(0)$ using the formulas for the Fourier coefficients :
 
-$\displaystyle b_n(0) = \frac{2}{L} \int_0^L f(x) \sin \Big( \frac{\pi n}{L} x \Big) dx$
+$$\displaystyle b_n(0) = \frac{2}{L} \int_0^L f(x) \sin \Big( \frac{\pi n}{L} x \Big) dx$$
 
 
 $\textbf{Solving numerically the 2D heat equation}$
@@ -63,9 +63,7 @@ First thing first, we define our parameters for the equation :
     R = 10  # Radius of the circle
 
 
-I initialize my temperature by creating a matrix of coordordinates 
-
-$\begin{pmatrix} 5 & 7 & 9 \\ e^x & 2 & 0 \\ 1 & 2 & 3 \end{pmatrix}$
+I initialize my temperature by creating a matrix for T that will by update for each time step.
 
       T = np.zeros((Nx, Ny)) + 20  # Initial temperature of the plate : 15°C
 
@@ -84,9 +82,19 @@ Thus, I want to create a circle at 100K at the center of the map and few element
 
 We now come to the heart of the work. We aim to simulate the heat equation using the finite difference method. Therefore, we will discretize this equation as follows: : 
 
-$\frac{\partial T}{\partial t} - D \frac{\partial^2 T}{\partial x^2} = 0$
+$$\displaystyle \frac{\partial T}{\partial t} - D \bigg(\frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2} \bigg) = 0$$
 
+Let's discretize $T \longrightarrow T_{i,j}^n$ where $n$ is the $n$-th time step, $i$ is the $i$-th node for $x$, and $j$ is the $j$-th node for $y$
 
+Let's discretize - $\displaystyle \frac{\partial T}{\partial t} \longrightarrow \frac{T_{i,j}^{n+1} - T_{i,j}^n}{dt}$
+
+$\displaystyle \frac{\partial^2 T}{\partial x^2} \longrightarrow \frac{T_{i+1,j}^n - 2T_{i,j}^n + T_{i-1,j}^n}{dx^2}$
+
+$\displaystyle \frac{\partial^2 T}{\partial y^2} \longrightarrow \frac{T_{i,j+1}^n - 2T_{i,j}^n + T_{i,j-1}^n}{dy^2}$
+
+So, we find :
+
+$$\displaystyle T_{i,j}^{n+1} = T_{i,j}^{n} + dt D bigg(\frac{T_{i+1,j}^n - 2T_{i,j}^n + T_{i-1,j}^n}{dx^2} + \frac{T_{i,j+1}^n - 2T_{i,j}^n + T_{i,j-1}^n}{dy^2} \bigg)$$
 
 
 
