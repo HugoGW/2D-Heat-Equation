@@ -3,7 +3,7 @@ Simulation of the 2D diffusion equation of heat
 
 Dnas un premier temps, le but est de déterminer numériquement une solution de l'équation de la chaleur de Fourier 1D avec les séries de Fourier avec quelques approximations puis on souhaite résoudre numériquement cette équation en 2D.
 
-$\textbf{Résolution de l'équation de la chaleur 1D}
+$\textbf{Résolution de l'équation de la chaleur 1D}$
 On a une barre 1D de longueur $L$ et on souhaite connaitre l'évolution de la température $T$ en fonction du temps $t>0$ et de la position $x \in [0,L]$. L'évolution de la température selon la position et selon le temps suit alors l'équation de la chaleur de fourier 1D soit :
 
 $\displaystyle (E) : ~~~~ \frac{\partial T}{\partial t} - D \frac{\partial^2 T}{\partial x^2} = 0$
