@@ -94,7 +94,7 @@ $\displaystyle \frac{\partial^2 T}{\partial y^2} \longrightarrow \frac{T_{i,j+1}
 
 So, we find :
 
-$$\displaystyle T_{i,j}^{n+1} = T_{i,j}^{n} + dt D bigg(\frac{T_{i+1,j}^n - 2T_{i,j}^n + T_{i-1,j}^n}{dx^2} + \frac{T_{i,j+1}^n - 2T_{i,j}^n + T_{i,j-1}^n}{dy^2} \bigg)$$
+$$\displaystyle T_{i,j}^{n+1} = T_{i,j}^{n} + dt D \bigg(\frac{T_{i+1,j}^n - 2T_{i,j}^n + T_{i-1,j}^n}{dx^2} + \frac{T_{i,j+1}^n - 2T_{i,j}^n + T_{i,j-1}^n}{dy^2} \bigg)$$
 
 
 
