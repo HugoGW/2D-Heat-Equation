@@ -6,7 +6,7 @@ Dnas un premier temps, le but est de déterminer numériquement une solution de 
 $\textbf{Résolution de l'équation de la chaleur 1D}
 On a une barre 1D de longueur $L$ et on souhaite connaitre l'évolution de la température $T$ en fonction du temps $t>0$ et de la position $x \in [0,L]$. L'évolution de la température selon la position et selon le temps suit alors l'équation de la chaleur de fourier 1D soit :
 
-$\displaystyle (E) ~~~~~~ \frac{\partial T}{\partial t} - D \frac{\partial^2 T}{\partial x^2} = 0$
+$\displaystyle (E) : ~~~~ \frac{\partial T}{\partial t} - D \frac{\partial^2 T}{\partial x^2} = 0$
 
 On fait la suppostion quant aux conditions aux bords : $T (0,t) = T (L,t) = 0$ et également quant à la condition initiale : $T(x,0) = f(x) \forall x \in [0,L]$.
 
@@ -28,7 +28,7 @@ $\displaystyle \sum_{n=0}^{\infty} b_n'(t) \sin \Big( \frac{\pi n}{L} x \Big) + 
 
 $\displaystyle \sum_{n=0}^{\infty} \Big( b_n'(t) + D\frac{\pi^2 n^2}{L^2} b_n(t) \Big) \sin \Big( \frac{\pi n}{L} x \Big)  = 0$
 
-Pour un $n$ fixé on a l'équation différentielle $\displaystyle b_n'(t) + D\frac{\pi^2 n^2}{L^2} b_n(t) = 0$ admettant une infinité de solution du type : $b_n(t) = b_n(0) e^{-\frac{D \pi^2 n^2}{L^2} t}.
+Pour un $n$ fixé on a l'équation différentielle $\displaystyle b_n'(t) + D\frac{\pi^2 n^2}{L^2} b_n(t) = 0$ admettant une infinité de solution du type : $b_n(t) = b_n(0) e^{-\frac{D \pi^2 n^2}{L^2} t}$.
 
 On a donc comme solution :
 
@@ -38,7 +38,7 @@ On peut alors déterminer $b_n(0)$ grâce à la condition initiale : $\displayst
 
 Comme on a à faire à une série de fourier alors on peut calculer les coefficients $b_n(0)$ grâce aux formules des coefficients de Fourier :
 
-$b_n(0) = \frac{2}{L} \int_0^L f(x) \sin \Big( \frac{\pi n}{L} x \Big) dx$
+$\displaystyle b_n(0) = \frac{2}{L} \int_0^L f(x) \sin \Big( \frac{\pi n}{L} x \Big) dx$
 
 
 
