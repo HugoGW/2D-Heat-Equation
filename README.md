@@ -84,9 +84,9 @@ We now come to the heart of the work. We aim to simulate the heat equation using
 
 $$\displaystyle \frac{\partial T}{\partial t} - D \bigg(\frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2} \bigg) = 0$$
 
-Let's discretize $T \longrightarrow T_{i,j}^n$ where $n$ is the $n$-th time step, $i$ is the $i$-th node for $x$, and $j$ is the $j$-th node for $y$
+Let's discretize $T \longrightarrow T_{i,j}^n$ where $n$ is the $n$-th time step, $i$ is the $i$-th node for $x$, and $j$ is the $j$-th node for $y$ and for the derivates :
 
-Let's discretize - $\displaystyle \frac{\partial T}{\partial t} \longrightarrow \frac{T_{i,j}^{n+1} - T_{i,j}^n}{dt}$
+$\displaystyle \frac{\partial T}{\partial t} \longrightarrow \frac{T_{i,j}^{n+1} - T_{i,j}^n}{dt}$
 
 $\displaystyle \frac{\partial^2 T}{\partial x^2} \longrightarrow \frac{T_{i+1,j}^n - 2T_{i,j}^n + T_{i-1,j}^n}{dx^2}$
 
@@ -96,8 +96,26 @@ So, we find :
 
 $$\displaystyle T_{i,j}^{n+1} = T_{i,j}^{n} + dt D \bigg(\frac{T_{i+1,j}^n - 2T_{i,j}^n + T_{i-1,j}^n}{dx^2} + \frac{T_{i,j+1}^n - 2T_{i,j}^n + T_{i,j-1}^n}{dy^2} \bigg)$$
 
+This means that for each time step $dt$, we compute the new value $T_{i,j}^{n+1}$ using the equation above, and then proceed with another iteration. The term $T_{i,j}^{n+1}$ becomes the current term $T_{i,j}^{n}$, and we compute the new term $T_{i,j}^{n+1}$ based on the previous one, repeating the process for each time step.
+At each iteration, we plot $T_{i,j}^{n+1}$ to visualize the overall evolution of temperature.
 
+    counter = 0
+    while counter < time:
+        for i in range(1, Nx - 1):
+            for j in range(1, Ny - 1):
+                d2x = (T[i - 1, j] - 2 * T[i, j] + T[i + 1, j]) / dx**2
+                d2y = (T[i, j - 1] - 2 * T[i, j] + T[i, j + 1]) / dy**2
+                T[i, j] = dt * D * (d2x + d2y) + T[i, j]
 
+        counter += dt
+        T[(np.arange(Nx)[:, np.newaxis] - center_x)**2 + (np.arange(Ny) - center_y)**2 == R**2] = 100
+        pcm.set_array(T)
+        ax.set_title("Time: {:.3f} s, Avg Temperature: {:.2f}".format(counter, np.average(T)))
+        plt.pause(0.01)
+
+    plt.show()
+
+It's a relatively short but efficient code. We can have fun changing the initial conditions, the colormap style, or the boundary conditions, the temperatures of certain points to create patterns and figures that are more or less beautiful or symmetrical. Your only limit is your imagination.
 
 
 
